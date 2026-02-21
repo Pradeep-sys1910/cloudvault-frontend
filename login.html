@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudVault — Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<img src="logo.png" class="topLogo" alt="CloudVault">
+
+<div class="auth-wrapper">
+  <div class="card">
+    <h2>Welcome Back ☁️</h2>
+    <p class="subtitle">Sign in to your CloudVault</p>
+
+    <div class="input-group">
+      <input id="email" type="email" placeholder="Email address" autocomplete="email">
+    </div>
+    <div class="input-group">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password"
+             onkeydown="if(event.key==='Enter') login()">
+    </div>
+
+    <button id="loginBtn" onclick="login()">Login</button>
+
+    <div id="loginMsg" class="msg"></div>
+
+    <p><a href="forgot.html">Forgot password?</a></p>
+    <p>No account? <a href="signup.html">Sign up free</a></p>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

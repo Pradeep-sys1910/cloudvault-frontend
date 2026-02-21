@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudVault — Forgot Password</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<img src="logo.png" class="topLogo" alt="CloudVault">
+
+<div class="auth-wrapper">
+  <div class="card">
+    <h2>Reset Password 🔐</h2>
+    <p class="subtitle">Enter your email and we'll send a reset link</p>
+
+    <div class="input-group">
+      <input id="resetEmail" type="email" placeholder="Your email address"
+             onkeydown="if(event.key==='Enter') forgotPassword()">
+    </div>
+
+    <button id="forgotBtn" onclick="forgotPassword()">Send Reset Link</button>
+
+    <div id="forgotMsg" class="msg"></div>
+
+    <p><a href="login.html">← Back to Login</a></p>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

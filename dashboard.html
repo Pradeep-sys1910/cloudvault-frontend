@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudVault — Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<img src="logo.png" class="topLogo" alt="CloudVault">
+
+<!-- ===== DELETE CONFIRM MODAL ===== -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal-box">
+    <h3>🗑 Delete File?</h3>
+    <p>This will permanently delete<br><strong id="deleteFileName"></strong></p>
+    <div class="modal-actions">
+      <button class="btn-ghost" onclick="closeDeleteModal()">Cancel</button>
+      <button class="btn-danger" onclick="confirmDeleteAction()">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DASHBOARD ===== -->
+<div class="dashboard-wrapper">
+
+  <!-- Header -->
+  <div class="dash-header">
+    <div class="dash-title">☁️ My CloudVault</div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="dash-user">Hello, <span id="userName">...</span></div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- Storage Bar -->
+  <div class="storage-card">
+    <div id="storageText">
+      <span>Calculating storage...</span>
+      <span></span>
+    </div>
+    <div class="storage-track">
+      <div id="storageBarFill"></div>
+    </div>
+  </div>
+
+  <!-- Upload -->
+  <div class="upload-card">
+    <h3>Upload File</h3>
+    <div class="upload-row">
+      <input type="file" id="fileInput" onchange="showFileName()">
+      <button onclick="uploadFile()">⬆ Upload</button>
+    </div>
+    <div id="selectedFileName" class="file-selected-text"></div>
+    <div id="uploadProgressBox" style="display:none;">
+      <div class="progress-bar">
+        <div id="uploadProgress"></div>
+      </div>
+      <p id="uploadPercent">0%</p>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="controls-row">
+    <input id="searchInput" placeholder="🔎 Search files..." onkeyup="searchFiles()">
+    <select id="sortSelect" onchange="sortFiles()">
+      <option value="date">Newest First</option>
+      <option value="name">Sort by Name</option>
+      <option value="size">Sort by Size</option>
+    </select>
+  </div>
+
+  <!-- File Grid -->
+  <div id="fileList" class="file-grid"></div>
+
+</div>
+
+<script src="app.js"></script>
+<script>
+  // Load files when dashboard opens
+  window.addEventListener("load", loadFiles);
+</script>
+</body>
+</html>

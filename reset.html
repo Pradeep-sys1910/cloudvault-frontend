@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CloudVault — Set New Password</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<img src="logo.png" class="topLogo" alt="CloudVault">
+
+<div class="auth-wrapper">
+  <div class="card">
+    <h2>New Password 🔑</h2>
+    <p class="subtitle">Choose a strong password for your account</p>
+
+    <div class="input-group">
+      <input id="newPassword" type="password" placeholder="New password">
+    </div>
+    <div class="input-group">
+      <input id="confirmPassword" type="password" placeholder="Confirm new password"
+             onkeydown="if(event.key==='Enter') resetPassword()">
+    </div>
+
+    <button id="resetBtn" onclick="resetPassword()">Update Password</button>
+
+    <div id="resetMsg" class="msg"></div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
