@@ -8,16 +8,22 @@
 </head>
 <body>
 
-<!-- CAUTION TAPE X -->
-<div class="tape-wrap">
+<!-- CAUTION TAPE X — shown only if server unreachable -->
+<div class="tape-wrap" id="tapeWrap" style="display:none;">
   <div class="tape tape-left">
     <div class="tape-inner">
-      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
     </div>
   </div>
   <div class="tape tape-right">
     <div class="tape-inner">
-      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
+      <span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span><span>SERVER UNREACHABLE</span>
     </div>
   </div>
 </div>
@@ -47,5 +53,28 @@
 </div>
 
 <script src="app.js"></script>
+<script>
+  const tape = document.getElementById("tapeWrap");
+
+  function checkServer() {
+    fetch("https://cloudvault-backend-ntkz.onrender.com/", { signal: AbortSignal.timeout(5000) })
+      .then(res => {
+        if (res.ok) {
+          tape.style.display = "none"; // Server is up — hide tape
+        } else {
+          tape.style.display = "block";
+        }
+      })
+      .catch(() => {
+        tape.style.display = "block"; // Server unreachable — show tape
+      });
+  }
+
+  // Check immediately on load
+  checkServer();
+
+  // Keep checking every 10 seconds — hides tape the moment server wakes up
+  setInterval(checkServer, 10000);
+</script>
 </body>
 </html>
